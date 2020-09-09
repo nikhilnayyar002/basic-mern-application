@@ -1,0 +1,10 @@
+.PostApplication {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  background-color: #e0e0e0;
+  width: 35rem;
+  max-width: 100%;
+}
