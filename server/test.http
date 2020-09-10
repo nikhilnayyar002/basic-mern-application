@@ -1,0 +1,44 @@
+### 
+
+	POST http://localhost:3000/api/application/register
+    Content-Type: application/json
+
+	{
+        "name": "Nikhil Nayyar",
+        "email":"nikhilnayyar004@gmail.com",
+        "resume":"myfile.pdf",
+        "date":"2020-09-08T08:15:23.939Z",
+        "country":"India"
+	}
+
+
+### 
+
+	POST http://localhost:3000/api/application/register
+    Content-Type: application/json
+
+	{
+        "name": "Nikhil Nayyar",
+        "email":"nikhilnayyar003@gmail.com",
+        "resume":"myfile.pdf",
+        "date":"2020-09-08T09:02:43.152Z",
+        "country":"India"
+	}
+
+### 
+
+	GET http://localhost:3000/api/application/all
+
+
+### 
+
+	POST http://localhost:3000/api/application/delete
+    Content-Type: application/json
+
+	{
+        "name": "Nikhil Nayyar",
+        "email":"nikhilnayyar005@gmail.com",
+        "resume":"5f5787ad400fee25244eb8efPROJECT-SCHEDULE.docx",
+        "date":"2020-09-08T09:02:43.152Z",
+        "country":"India"
+	}

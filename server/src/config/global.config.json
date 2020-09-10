@@ -1,0 +1,26 @@
+{
+    "restAPI": "/api",
+    "server":{
+      "dev":{
+          "isProduction":false,
+          "port":3000,
+          "mongoURI":"mongodb+srv://temp_user_2:temp_user_2@cluster0.moe1a.mongodb.net/job-backend?retryWrites=true&w=majority"
+      },
+      "prod":{
+          "isProduction":true,
+          "port":3000,
+          "mongoURI":"mongodb+srv://temp_user_2:temp_user_2@cluster0.moe1a.mongodb.net/job-backend?retryWrites=true&w=majority"
+      }
+    },
+    "resume":{
+        "resumeUploads": "/uploads",
+        "resumeUploadSize": 5242880,
+        "resumeRequestUrl": "/public/resume",
+        "resumeFormDataName":"resumeFile",
+        "files":{
+            "pdf":"application/pdf",
+            "doc":"application/msword",
+            "docx":"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        }
+    }
+}
