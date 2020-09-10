@@ -1,5 +1,7 @@
 .App {
   padding-top: 56px;
+  background: var(--primary-bg);
+  min-height: 100vh;
 }
 .navbar-collapse {
   justify-content: flex-end;

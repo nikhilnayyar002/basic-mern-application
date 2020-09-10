@@ -1,3 +1,8 @@
+:root {
+  --primary-bg:#afafaf;
+  --secondary-bg:#e0e0e0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -14,6 +19,23 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.font-weight-medium {
+  font-weight: 500 !important;
+}
+
+.btn-link {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+}
+.btn-link:hover {
+  text-decoration: underline !important;
+}
+.btn-link:focus {
+  text-decoration: none;
 }
 
 /* custom dropdown ******************************************************************************************** */
@@ -61,6 +83,7 @@ code {
 }
 .dropdown .dropdown-item:active {
   background-color: #e2e6ea;
+  color: inherit;
 }
 
 .dropdown .dropdown-item.item-sm {
@@ -92,3 +115,23 @@ code {
 }
 
 /* --ends */
+
+
+
+/* hidden input that can be focused but remains visually hidden*/
+
+.hidden-input-cont {
+  position: relative;
+}
+.hidden-input-cont .hidden-input-target {
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+}
+
+
+/* -- ends */
