@@ -10,12 +10,10 @@ function AllApplications() {
 
   let [applications, setApplications] = useState<Application[]>([]);
 
-  let deleting: boolean = false;
 
   function deleteApplication(app: Application) {
     if (window.confirm('Are you sure?')) {
 
-      deleting = true
       const requestOptions = {
         method: 'POST',
         headers: {
@@ -86,7 +84,7 @@ function AllApplications() {
           <div className="mb-1"><span className="font-weight-medium">Country: </span>{app.country}</div>
           <div className="align-items-center d-flex mt-2">
             <div>
-              <a href={`${globalConfig.restAPI}${globalConfig.resume.resumeRequestUrl}/${app.resume}`}>Resume</a>
+              <a target="_blank" rel="noopener noreferrer" href={`${globalConfig.resume.resumeRequestUrl}/${app.resume}`}>Resume</a>
             </div>
             <div className="ml-auto">
               <button className="btn btn-link text-danger" onClick={deleteApplication.bind(null, app)}>Delete Application</button>

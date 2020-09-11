@@ -19,7 +19,7 @@ export function isValidFile(file: File) {
     let exts = Object.keys(FILELISTS)
 
     for (let ext of exts) {
-        if (file.name.endsWith("." + ext) && file.type == FILELISTS[ext]) {
+        if (file.name.endsWith("." + ext) && file.type === FILELISTS[ext]) {
             return true
         }
     }

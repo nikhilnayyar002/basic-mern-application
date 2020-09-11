@@ -1,13 +1,9 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, NavLink, Route } from 'react-router-dom';
+import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
 import PostApplication from './PostApplication/PostApplication';
 import AllApplications from './AllApplications/AllApplications';
-
-enum Pages {
-  PostApplication = "PostApplication",
-  AllApplications = "AllApplications"
-}
+import Page404 from './Page404/Page404';
 
 function App() {
 
@@ -30,8 +26,11 @@ function App() {
             </ul>
           </div>
         </nav>
-        <Route path="/" exact component={PostApplication} />
-        <Route path="/applications"  component={AllApplications} />
+        <Switch>
+          <Route path="/" exact component={PostApplication} />
+          <Route path="/applications" component={AllApplications} />
+          <Route component={Page404} />
+        </Switch>
       </div>
     </BrowserRouter>
   );

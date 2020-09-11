@@ -1,7 +1,7 @@
 import React, { FormEvent, useState, useEffect } from 'react';
 import './PostApplication.css';
 import { isValidFile, globalConfig } from '../global';
-import { Subject, Observable, of } from "rxjs";
+import { Subject, of } from "rxjs";
 import { debounceTime, distinctUntilChanged, switchMap } from "rxjs/operators";
 
 
@@ -115,7 +115,7 @@ function PostApplication() {
     return of(countryList.filter((str) => str.toLowerCase().includes(term)));
   }
 
-  let [searchTermsC] = useState(new Subject<string>())
+  const [searchTermsC] = useState(new Subject<string>())
 
   function searchCountry(e: React.FormEvent<HTMLInputElement>) {
     searchTermsC.next(e.currentTarget.value)
@@ -133,6 +133,7 @@ function PostApplication() {
     return () => {
       subs.unsubscribe();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

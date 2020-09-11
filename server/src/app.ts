@@ -3,18 +3,17 @@ import morgan from "morgan";
 import cors from 'cors'
 import path from 'path'
 import mongoose from "mongoose";
+import helmet from "helmet";
+import compression from "compression";
 
 /** initialize by just importing */
 import { config, envConfig } from "./config/setupEnv";
 /** end */
 
 import { HttpException } from "./config/global";
-
-var compression = require("compression");
-var helmet = require("helmet");
-
 import { applicationRouter } from "./router/application.router";
-import { getResume, delResume } from "./controllers/resume.controller";
+import { getResume } from "./controllers/resume.controller";
+
 
 mongoose.set("bufferCommands", false);
 //mongoose.set('bufferMaxEntries', 0);
@@ -46,10 +45,12 @@ mongoose.connect(envConfig.mongoURI, err => {
 //     console.log("Mongoose default connection is disconnected");
 // });
 
+
 let app = express();
 
-// If an incoming request uses a protocol other than HTTPS,
-// redirect that request to the same url but with HTTPS
+/**
+ * If an incoming request uses a protocol other than HTTPS, redirect that request to the same url but with HTTPS
+ */
 const forceSSL = function () {
   return function (req, res, next) {
     if (req.headers["x-forwarded-proto"] !== "https") {
@@ -60,22 +61,39 @@ const forceSSL = function () {
 };
 
 app.use(compression());
-app.use(helmet());
 
-envConfig.isProduction ? (
-  app.use(forceSSL())
-) : (
-    app.use(morgan("dev")),
-    /** allow cross-origin acess */
-    app.use(cors())
-  )
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "default-src": ["'self'"],
+      "base-uri": ["'self'"],
+      "block-all-mixed-content": [],
+      "font-src": ["'self'", "https:", "data:"],
+      "frame-ancestors": ["'self'"],
+      "img-src": ["'self'", "https:", "data:"],
+      "object-src": ["'none'"],
+      "script-src": ["'self'", "'unsafe-inline'"],
+      "script-src-attr": ["'none'"],
+      "style-src": ["'self'", "https:", "'unsafe-inline'"],
+      "upgrade-insecure-requests": []
+    },
+  })
+);
+app.use(helmet.dnsPrefetchControl());
+app.use(helmet.expectCt());
+app.use(helmet.frameguard());
+app.use(helmet.hidePoweredBy());
+app.use(helmet.hsts());
+app.use(helmet.ieNoOpen());
+app.use(helmet.noSniff());
+app.use(helmet.permittedCrossDomainPolicies());
+app.use(helmet.referrerPolicy());
+app.use(helmet.xssFilter());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, "../public")));
+
 // app.disable("view cache");
-
-
 
 // app.all('*',function(req, res, next) {
 //   res.set('Access-Control-Allow-Origin', '*');
@@ -83,16 +101,33 @@ app.use(express.static(path.join(__dirname, "../public")));
 //   next();
 // })
 
+envConfig.isProduction ? (
+  console.log("server is running in production"),
+  app.use(forceSSL())
+) : (
+    console.log("server is running in development"),
+    app.use(morgan("dev")),
+    /** allow cross-origin acess */
+    app.use(cors())
+  )
+
+
 app.use(`${config.restAPI}/application`, applicationRouter);
 app.use(`${config.resume.resumeRequestUrl}/:id`, getResume);
 
-// app.use(express.static(path.join(__dirname, "build")));
 
-// app.get("/*", function(req, res, next) {
-//   if (!req.path.includes(config.restAPI))
-//     res.sendFile(path.join(__dirname, "build", "index.html"));
-//   else next();
-// });
+envConfig.isProduction ? (
+
+  app.use(express.static(path.join(__dirname, "../public"))),
+
+  app.get("/*", function (req, res, next) {
+    if (!req.path.includes(config.restAPI))
+      res.sendFile(path.join(__dirname, "../public", "index.html"));
+    else next();
+  })
+
+) : null
+
 
 app.use("**", invalidPath);
 function invalidPath(req, res, next) {

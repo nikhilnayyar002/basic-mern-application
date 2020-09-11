@@ -1,0 +1,10 @@
+.Page404 {
+  display: flex;
+  justify-content: center;
+}
+
+.page {
+  background-color: var(--secondary-bg);
+  width: 40rem;
+  max-width: 100%;
+}

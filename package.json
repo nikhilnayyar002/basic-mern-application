@@ -2,7 +2,6 @@
   "name": "my-app-1",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -15,6 +14,7 @@
     "@types/react-router-dom": "^5.1.5",
     "bootstrap": "^4.5.2",
     "fs-extra": "^9.0.1",
+    "http-proxy-middleware": "^1.0.5",
     "jquery": "^3.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -28,8 +28,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "build-react": "npm run build && node extra-tasks-for-build",
     "build-app": "(cd server && npm run build) && (cd .. && npm run build && node extra-tasks-for-build)",
-    "copy-config":"node copy-config-manually"
+    "copy-config": "ts-node copy-config-manually"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,7 +47,9 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.1"
+  },
   "rescripts": [
     "env"
   ]
