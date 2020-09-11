@@ -1,7 +1,5 @@
 node_modules
 # server build js files
 build
-# static files folder: react build
-public
 # resume folder
 uploads

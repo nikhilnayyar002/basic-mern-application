@@ -29,8 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-react": "npm run build && node extra-tasks-for-build",
-    "build-app": "(cd server && npm run build) && (cd .. && npm run build && node extra-tasks-for-build)",
-    "copy-config": "ts-node copy-config-manually"
+    "copy-config": "node copy-config-manually"
   },
   "eslintConfig": {
     "extends": "react-app"
