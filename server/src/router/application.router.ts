@@ -1,6 +1,5 @@
 import express from 'express';
 import { register, getAllApplications, deleteApplication } from '../controllers/application.controller';
-import { resumeUpload } from '../config/global';
 
 let router:express.Router = express.Router();
 

@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import express from "express";
+import multer from "multer";
 import { Application, ApplicationModal } from "../modal/application";
 import { Record404Exception, resumeUpload } from "../config/global";
 import { config } from "../config/setupEnv";
@@ -9,7 +10,6 @@ import { config } from "../config/setupEnv";
  * Return @message
  */
 export const register: express.RequestHandler = (req, res, next) => {
-
     resumeUpload(req, res, function (err) {
         if (!err) {
             if (req.file) {
@@ -19,7 +19,9 @@ export const register: express.RequestHandler = (req, res, next) => {
             }
         }
         else {
-            if (err.code == 11000)
+            if (err instanceof multer.MulterError)
+                return res.status(422).json({ status: false, message: err.message });
+            else if (err.code == 11000)
                 return res.status(422).json({
                     status: false,
                     message: 'Duplicate email adrress found.'

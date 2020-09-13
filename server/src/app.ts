@@ -102,8 +102,8 @@ app.use(express.urlencoded({ extended: false }));
 // })
 
 envConfig.isProduction ? (
-  console.log("server is running in production"),
-  app.use(forceSSL())
+  console.log("server is running in production")
+  // app.use(forceSSL())
 ) : (
     console.log("server is running in development"),
     app.use(morgan("dev")),
