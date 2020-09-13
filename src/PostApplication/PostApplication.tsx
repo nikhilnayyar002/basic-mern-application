@@ -89,7 +89,7 @@ function PostApplication() {
 
   function uploadResume(event: React.ChangeEvent<HTMLInputElement>) {
     let files = fileRef!.files
-    if (!(files && isValidFile(files[0]))) {
+    if (!(files?.length && isValidFile(files[0]))) {
       fileRef!.value = ''
       setFileName("")
     } else {
