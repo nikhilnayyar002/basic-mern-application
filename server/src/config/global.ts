@@ -47,7 +47,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req: express.Request, file, cb) {
     let app:Application = req.body;
-    app.resume = mongoose.Types.ObjectId().toHexString().toString() + file.originalname
+    app.resume = mongoose.Types.ObjectId().toHexString().toString() + file.originalname.replace(" ", "_")
     ApplicationModal.create(app, function (err, apps) {
         if (err) {
           cb(err, app.resume);

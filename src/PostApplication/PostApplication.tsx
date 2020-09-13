@@ -32,7 +32,7 @@ function PostApplication() {
     formData.append("email", emailRef!.value);
     formData.append("date", (new Date()).toJSON());
     formData.append("country", countryRef!.value);
-    formData.append("resumeFile", fileRef!.files![0]);
+    formData.append(globalConfig.resume.resumeFormDataName, fileRef!.files![0]);
 
     const requestOptions = {
       method: 'POST',

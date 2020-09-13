@@ -11,7 +11,7 @@ import { config } from '../config/setupEnv';
 export const getResume: express.RequestHandler = function (req, res, next) {
     let id = req.params.id
     return res.sendFile(path.join(__dirname, `../..${config.resume.resumeUploads}`, id), (error) => {
-        if (error) return res.json({ status: false, message: "Either file not exists or try again later." })
+        if (error) return next(new Record404Exception())
     });
 };
 
