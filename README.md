@@ -2,8 +2,8 @@
 
 <br>
 
-**Live URL:** [Link](https://my-test-app-002.herokuapp.com/)
-
+**Live URL:** <del>https://my-test-app-002.herokuapp.com/</del>
+> The live url is disabled due the issue [#3](https://github.com/nikhilnayyar002/basic-mern-application/issues/3)
 <br>
 
 ## Setup
