@@ -2,7 +2,7 @@
 
 <br>
 
-**Live URL:** <del>https://my-test-app-002.herokuapp.com/</del>
+**Live URL:** <del>my-test-app-002</del>
 > The live url is disabled due the issue [#3](https://github.com/nikhilnayyar002/basic-mern-application/issues/3)
 <br>
 
