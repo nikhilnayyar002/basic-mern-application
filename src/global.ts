@@ -33,7 +33,7 @@ export function getDateTime(dateStr: string) {
     let d1str = d1 < 10 ? ('0' + d1) : (d1 + '')
     let d2 = date.getMonth() + 1
     let d2str = d2 < 10 ? ('0' + d2) : (d2 + '')
-    let d3 = date.getMonth() + 1
+    let d3 = date.getFullYear() + 1
     let d3str = d3 < 10 ? ('0' + d3) : (d3 + '')
 
     let td = d1str + '/' + d2str + '/' + d3str

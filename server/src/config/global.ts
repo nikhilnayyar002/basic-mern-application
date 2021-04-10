@@ -4,7 +4,7 @@ import { config } from "./setupEnv";
 import fs from 'fs'
 import path from 'path'
 import express from 'express';
-import  { ApplicationModal, Application} from '../modal/application'
+import { ApplicationModal, Application } from '../modal/application'
 
 
 export class HttpException extends Error {
@@ -46,16 +46,16 @@ const storage = multer.diskStorage({
     );
   },
   filename: function (req: express.Request, file, cb) {
-    let app:Application = req.body;
+    let app: Application = req.body;
     app.resume = mongoose.Types.ObjectId().toHexString().toString() + file.originalname.replace(/\s/g, "_")
     ApplicationModal.create(app, function (err, apps) {
-        if (err) {
-          cb(err, app.resume);
-        } else {
-          cb(null, app.resume);
-        }
+      if (err) {
+        cb(err, app.resume);
+      } else {
+        cb(null, app.resume);
+      }
     });
-    
+
   }
 });
 
@@ -70,8 +70,8 @@ export const resumeUpload = multer({
     let FILELISTS = config.resume.files
     let exts = Object.keys(FILELISTS)
 
-    for(let ext of exts) {
-      if(file.originalname.endsWith("." + ext) && file.mimetype == FILELISTS[ext]) {
+    for (let ext of exts) {
+      if (file.originalname.endsWith("." + ext) && file.mimetype == FILELISTS[ext]) {
         return cb(null, true);
       }
     }

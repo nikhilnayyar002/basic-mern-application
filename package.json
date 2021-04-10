@@ -48,8 +48,5 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.1"
-  },
-  "rescripts": [
-    "env"
-  ]
+  }
 }
